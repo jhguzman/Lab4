@@ -13,27 +13,21 @@
 using namespace std;
 
 
-
 class GuessVerification {
     int guess;
     int randNum;
     int green;
     int yellow;
     int red;
-private:
-    void randomNumber();
-    void guessVerifier(int randNum, int guess);
+public:
+    void guessVerifier(int guess);
     void printResults();
 };
 
 
-void GuessVerification::randomNumber(){
-    randNum = 100 + (rand() % 899);
-}
-
-
-void GuessVerification::guessVerifier(int randNum, int guess){
+void GuessVerification::guessVerifier(int guess){ //Needs work.
     int n = 100;
+    randNum = 100 + (rand() % 899);
     for (int i = 0; i < 3; i++){
         if (((guess/n) % 10) == ((randNum/100) % 10)){
             n = n/10;
@@ -52,15 +46,21 @@ void GuessVerification::guessVerifier(int randNum, int guess){
 }
 
 
-void GuessVerification::printResults(){
+void GuessVerification::printResults(){ //WORKS
     cout<<"You have: "<<red<<" red"<<endl;
     cout<<"          "<<green<<" green"<<endl;
     cout<<"          "<<yellow<<" yellow"<<endl;
+    cout<<"The number was "<<randNum<<endl;
 }
 
 
 int main() {
+    int guess;
+    GuessVerification guessedValue;
     srand(static_cast<unsigned int>(time(0)));
-    
+    cout<<"Try to guess the 3 digit number."<<endl;
+    cin>>guess;
+    guessedValue.guessVerifier(guess);
+    guessedValue.printResults();
     return 0;
 }
