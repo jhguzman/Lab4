@@ -31,15 +31,15 @@ void GuessVerification::guessVerifier(int guess){ //Needs work.
     randNum = 100 + (rand() % 899);
     vector <int> colors(3);
     for (int i = 0; i < 3; i++){
-        if (((guess/n) % 10) == ((randNum/100) % 10)){
+        if (((guess/n) % 10) == ((randNum/100) % 10)){ //compares guess to randNum digit 1
             n = n/10;
             //element at 0 ++
             //swap
-        } else if (((guess/n) % 10) == ((randNum/10) % 10)) {
+        } else if (((guess/n) % 10) == ((randNum/10) % 10)) { //compares guess to randNum digit 2
             n = n/10;
             //element at 1 ++
             //swap
-        } else if (((guess/n) % 10) == (randNum % 10)) {
+        } else if (((guess/n) % 10) == (randNum % 10)) { //compares guess to randNum digit 3
             n = n/10;
             //element at 2 ++
             //swap
@@ -48,7 +48,8 @@ void GuessVerification::guessVerifier(int guess){ //Needs work.
             red++;
         }
     }
-    green = colors[2];
+    green = colors.at(2);
+    yellow = colors.at(1) + colors.at(0);
 }
 
 
