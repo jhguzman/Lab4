@@ -13,6 +13,7 @@
 using namespace std;
 
 
+
 class GuessVerification {
     int guess;
     int randNum;
@@ -25,9 +26,11 @@ private:
     void printResults();
 };
 
+
 void GuessVerification::randomNumber(){
     randNum = 100 + (rand() % 899);
 }
+
 
 void GuessVerification::guessVerifier(int randNum, int guess){
     int n = 100;
@@ -48,14 +51,16 @@ void GuessVerification::guessVerifier(int randNum, int guess){
     } 
 }
 
+
 void GuessVerification::printResults(){
-    
+    cout<<"You have: "<<red<<" red"<<endl;
+    cout<<"          "<<green<<" green"<<endl;
+    cout<<"          "<<yellow<<" yellow"<<endl;
 }
-
-
 
 
 int main() {
     srand(static_cast<unsigned int>(time(0)));
+    
     return 0;
 }
