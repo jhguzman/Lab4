@@ -30,9 +30,11 @@ void GuessVerification::guessVerifier(int guess){ //Needs work.
     int n = 100;
     randNum = 100 + (rand() % 899);
     vector <int> colors(3);
+    int j = 0;
     for (int i = 0; i < 3; i++){
         if (((guess/n) % 10) == ((randNum/100) % 10)){ //compares guess to randNum digit 1
             n = n/10;
+            colors.at(j) = colors.at(j) + 1; //Updates element.
             //element at 0 ++
             //swap
         } else if (((guess/n) % 10) == ((randNum/10) % 10)) { //compares guess to randNum digit 2
@@ -62,12 +64,20 @@ void GuessVerification::printResults(){ //WORKS
 
 
 int main() {
-    int guess;
-    GuessVerification guessedValue;
+    //int guess;
+    //GuessVerification guessedValue;
     //srand(static_cast<unsigned int>(time(0)));
-    cout<<"Try to guess the 3 digit number."<<endl;
+   /* cout<<"Try to guess the 3 digit number."<<endl;
     cin>>guess;
     guessedValue.guessVerifier(guess);
     guessedValue.printResults();
+    */
+    vector <int> test(3);
+    test.at(0) = 1;
+    test.at(1) = 45;
+    test.at(2) = 209;
+    cout<<test.at(0)<<endl;
+    test.at(0) = test.at(0) + 1;
+    cout<<test.at(0)<<endl;
     return 0;
 }
