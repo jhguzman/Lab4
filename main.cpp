@@ -30,49 +30,70 @@ void GuessVerification::guessVerifier(int guess){ //Needs work.
     int n = 100;
     randNum = 100 + (rand() % 899);
     vector <int> colors(3);
-    int j = 0;
-    for (int i = 0; i < 3; i++){
+    
+    for (int i = 1; i <= 3; i++){
         if (i == 1){
-            //compare first digit of guess with first digit of random for green.
-            //ELSE compare first digit of guess with second rand digit for yellow.
-            //ELSE compare first digit of guess with third digit for yellow.
-            //ELSE red
+            if (((guess/n) % 10) == ((randNum/100) % 10)){ //compares guess to randNum digit 1
+                n = n/10;
+                //colors.at(j) = colors.at(j) + 1; //Updates element.
+                //element at 0 ++
+                //swap
+            } else if (((guess/n) % 10) == ((randNum/10) % 10)) { //compares guess to randNum digit 2
+                n = n/10;
+                //element at 1 ++
+                //swap
+            } else if (((guess/n) % 10) == (randNum % 10)) { //compares guess to randNum digit 3
+                n = n/10;
+                //element at 2 ++
+                //swap
+            } else {
+                n = n/10;
+                red++;
+            }
+
         } else if (i == 2){
-            //compare second digit of guess with second digit of random for green.
-            //ELSE compare second guess digit with first digit of random for yellow.
-            //ELSE compare second guess digit with third digit of random for yellow.
-            //ELSE red
+            if (((guess/n) % 10) == ((randNum/10) % 10)){ //compares guess to randNum digit 1
+                n = n/10;
+                //colors.at(j) = colors.at(j) + 1; //Updates element.
+                //element at 0 ++
+                //swap
+            } else if (((guess/n) % 10) == ((randNum/100) % 10)) { //compares guess to randNum digit 2
+                n = n/10;
+                //element at 1 ++
+                //swap
+            } else if (((guess/n) % 10) == (randNum % 10)) { //compares guess to randNum digit 3
+                n = n/10;
+                //element at 2 ++
+                //swap
+            } else {
+                n = n/10;
+                red++;
+            }
+
         } else if (i == 3){
-            //compare third digit of guess with third digit of random for green.
-            //ELSE compare third digit of guess with first digit of random for yellow.
-            //ELSE compare third digit of guess with second digit of random for yellow.
-            //ELSE red
+            if (((guess/n) % 10) == (randNum % 10)){ //compares guess to randNum digit 1
+                n = n/10;
+                //colors.at(j) = colors.at(j) + 1; //Updates element.
+                //element at 0 ++
+                //swap
+            } else if (((guess/n) % 10) == ((randNum/100) % 10)) { //compares guess to randNum digit 2
+                n = n/10;
+                //element at 1 ++
+                //swap
+            } else if (((guess/n) % 10) == ((randNum/10) % 10)) { //compares guess to randNum digit 3
+                n = n/10;
+                //element at 2 ++
+                //swap
+            } else {
+                n = n/10;
+                red++;
+            }
+
         }
         
-        
-        
-        
-        
-        if (((guess/n) % 10) == ((randNum/100) % 10)){ //compares guess to randNum digit 1
-            n = n/10;
-            colors.at(j) = colors.at(j) + 1; //Updates element.
-            //element at 0 ++
-            //swap
-        } else if (((guess/n) % 10) == ((randNum/10) % 10)) { //compares guess to randNum digit 2
-            n = n/10;
-            //element at 1 ++
-            //swap
-        } else if (((guess/n) % 10) == (randNum % 10)) { //compares guess to randNum digit 3
-            n = n/10;
-            //element at 2 ++
-            //swap
-        } else {
-            n = n/10;
-            red++;
-        }
     }
-    green = colors.at(2);
-    yellow = colors.at(1) + colors.at(0);
+    //green = colors.at(2);
+    //yellow = colors.at(1) + colors.at(0);
 }
 
 
