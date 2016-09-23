@@ -32,6 +32,27 @@ void GuessVerification::guessVerifier(int guess){ //Needs work.
     vector <int> colors(3);
     int j = 0;
     for (int i = 0; i < 3; i++){
+        if (i == 1){
+            //compare first digit of guess with first digit of random for green.
+            //ELSE compare first digit of guess with second rand digit for yellow.
+            //ELSE compare first digit of guess with third digit for yellow.
+            //ELSE red
+        } else if (i == 2){
+            //compare second digit of guess with second digit of random for green.
+            //ELSE compare second guess digit with first digit of random for yellow.
+            //ELSE compare second guess digit with third digit of random for yellow.
+            //ELSE red
+        } else if (i == 3){
+            //compare third digit of guess with third digit of random for green.
+            //ELSE compare third digit of guess with first digit of random for yellow.
+            //ELSE compare third digit of guess with second digit of random for yellow.
+            //ELSE red
+        }
+        
+        
+        
+        
+        
         if (((guess/n) % 10) == ((randNum/100) % 10)){ //compares guess to randNum digit 1
             n = n/10;
             colors.at(j) = colors.at(j) + 1; //Updates element.
@@ -67,11 +88,11 @@ int main() {
     //int guess;
     //GuessVerification guessedValue;
     //srand(static_cast<unsigned int>(time(0)));
-   /* cout<<"Try to guess the 3 digit number."<<endl;
-    cin>>guess;
-    guessedValue.guessVerifier(guess);
-    guessedValue.printResults();
-    */
+    /* cout<<"Try to guess the 3 digit number."<<endl;
+     cin>>guess;
+     guessedValue.guessVerifier(guess);
+     guessedValue.printResults();
+     */
     vector <int> test(3);
     test.at(0) = 1;
     test.at(1) = 45;
@@ -79,5 +100,10 @@ int main() {
     cout<<test.at(0)<<endl;
     test.at(0) = test.at(0) + 1;
     cout<<test.at(0)<<endl;
+    
+    
+    
+    
+    
     return 0;
 }
