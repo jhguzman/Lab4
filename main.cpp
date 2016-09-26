@@ -26,6 +26,7 @@ public:
 };
 
 
+//Checks guess of user and compares it to the random integer that was generated.
 void GuessVerification::guessVerifier(int guess){
     int n = 100;
     green = 0;
@@ -83,7 +84,8 @@ void GuessVerification::guessVerifier(int guess){
     printResults();
 }
 
-
+//Prints the results and if the guess is wrong it asks the user to enter another guess
+//and sends that data to the guessVerifier function.
 void GuessVerification::printResults(){
     cout<<"You have: "<<red<<" red"<<endl;
     cout<<"          "<<green<<" green"<<endl;
