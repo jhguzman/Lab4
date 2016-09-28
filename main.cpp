@@ -29,9 +29,6 @@ public:
 //Checks guess of user and compares it to the random integer that was generated.
 void GuessVerification::guessVerifier(int guess){
     int n = 100;
-    green = 0;
-    yellow = 0;
-    red = 0;
     for (int i = 1; i <= 3; i++){
         if (i == 1){
             if (((guess/n) % 10) == ((randNum/100) % 10)){ //compares guess dig 1 to randNum digit 1
@@ -40,47 +37,95 @@ void GuessVerification::guessVerifier(int guess){
             } else if (((guess/n) % 10) == ((randNum/10) % 10)) { //compares guess dig 1 to randNum digit 2
                 n = n/10;
                 yellow++;
+                if ((((guess/100) % 10) == ((guess/10) % 10)) && (((guess/100) % 10) == (guess % 10))){
+                    yellow--;
+                }
             } else if (((guess/n) % 10) == (randNum % 10)) { //compares guess dig 1 to randNum digit 3
                 n = n/10;
                 yellow++;
+                if ((((guess/100) % 10) == ((guess/10) % 10)) && (((guess/100) % 10) == (guess % 10))){
+                    yellow--;
+                }
             } else {
                 n = n/10;
                 red++;
             }
             
         } else if (i == 2){
-            if (((guess/n) % 10) == ((randNum/10) % 10)){ //compares guess dig 2 to randNum digit 2
-                n = n/10;
-                green++;
-            } else if (((guess/n) % 10) == ((randNum/100) % 10)) { //compares guess dig 2 to randNum digit 1
-                n = n/10;
-                yellow++;
-            } else if (((guess/n) % 10) == (randNum % 10)) { //compares guess dig 2 to randNum digit 3
-                n = n/10;
-                yellow++;
+            if (green == 1){
+                if (((guess/n) % 10) == ((randNum/10) % 10)){ //compares guess dig 2 to randNum digit 2
+                    n = n/10;
+                    green++;
+                } else if (((guess/n) % 10) == (randNum % 10)) { //compares guess dig 2 to randNum digit 3
+                    n = n/10;
+                    yellow++;
+                    if ((((guess/100) % 10) == ((guess/10) % 10)) && (((guess/100) % 10) == (guess % 10))){
+                        yellow--;
+                    }
+                } else {
+                    n = n/10;
+                    red++;
+                }
             } else {
-                n = n/10;
-                red++;
+                if (((guess/n) % 10) == ((randNum/10) % 10)){ //compares guess dig 2 to randNum digit 2
+                    n = n/10;
+                    green++;
+                } else if (((guess/n) % 10) == ((randNum/100) % 10)) { //compares guess dig 2 to randNum digit 1
+                    n = n/10;
+                    yellow++;
+                    if ((((guess/100) % 10) == ((guess/10) % 10)) && (((guess/100) % 10) == (guess % 10))){
+                        yellow--;
+                    }
+                } else if (((guess/n) % 10) == (randNum % 10)) { //compares guess dig 2 to randNum digit 3
+                    n = n/10;
+                    yellow++;
+                    if ((((guess/100) % 10) == ((guess/10) % 10)) && (((guess/100) % 10) == (guess % 10))){
+                        yellow--;
+                    }
+                } else {
+                    n = n/10;
+                    red++;
+                }
+
             }
-            
+
         } else if (i == 3){
-            if (((guess/n) % 10) == (randNum % 10)){ //compares guess dig 3 to randNum digit 3
-                n = n/10;
-                green++;
-            } else if (((guess/n) % 10) == ((randNum/100) % 10)) { //compares guess dig 3 to randNum digit 1
-                n = n/10;
-                yellow++;
-            } else if (((guess/n) % 10) == ((randNum/10) % 10)) { //compares guess dig 3 to randNum digit 2
-                n = n/10;
-                yellow++;
+            if (green == 2){
+                if (((guess/n) % 10) == (randNum % 10)){ //compares guess dig 3 to randNum digit 3
+                    n = n/10;
+                    green++;
+                } else {
+                    n = n/10;
+                    red++;
+                }
+
             } else {
-                n = n/10;
-                red++;
+                if (((guess/n) % 10) == (randNum % 10)){ //compares guess dig 3 to randNum digit 3
+                    n = n/10;
+                    green++;
+                } else if (((guess/n) % 10) == ((randNum/100) % 10)) { //compares guess dig 3 to randNum digit 1
+                    n = n/10;
+                    yellow++;
+                    if ((((guess/100) % 10) == ((guess/10) % 10)) && (((guess/100) % 10) == (guess % 10))){
+                        yellow--;
+                    }
+                } else if (((guess/n) % 10) == ((randNum/10) % 10)) { //compares guess dig 3 to randNum digit 2
+                    n = n/10;
+                    yellow++;
+                    if ((((guess/100) % 10) == ((guess/10) % 10)) && (((guess/100) % 10) == (guess % 10))){
+                        yellow--;
+                    }
+                } else {
+                    n = n/10;
+                    red++;
+                }
+
             }
             
         }
         
     }
+
     printResults();
 }
 
@@ -91,6 +136,9 @@ void GuessVerification::printResults(){
     cout<<"          "<<green<<" green"<<endl;
     cout<<"          "<<yellow<<" yellow"<<endl;
     if (green != 3){
+        green = 0;
+        yellow = 0;
+        red = 0;
         cout<<"Enter the next guess."<<endl;
         int guessAgain;
         cin>>guessAgain;
