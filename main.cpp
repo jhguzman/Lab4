@@ -1,160 +1,68 @@
 //
 //  main.cpp
-//  Lab 4
+//  Lab 5
 //
-//  Created by Jordan Guzman on 9/21/16.
+//  Created by Jordan Guzman on 9/29/16.
 //  Copyright (c) 2016 Jordan Guzman. All rights reserved.
 //
 
 #include <iostream>
 #include <string>
-#include <ctime>
-#include <cstdlib>
+#include <vector>
 using namespace std;
 
 
-class GuessVerification {
-    int guess;
-    int randNum = 100 + (rand() % 899);
-    int green;
-    int yellow;
-    int red;
-    
+/*
+ Algorithm to fill magic square:
+    Move up one and one to the right until you hit an already filled space. If you hit a filled space, then
+    move 1 below where you're currently at.
+    If you need to wrap around make sure it is still taking the same pattern of moving up one and one to the right.
+ */
+
+/*
+  Implement a 2D vector (n * n, or n^2, matrix).
+ */
+
+/*
+class MagicSquare{
 public:
-    void guessVerifier(int guess);
-    void printResults();
+    MagicSquare(int size);
+    void display(vector<int> magicSquare);
+    char square(int userInput);
+private:
+    int size;
+    vector <int> magicSquare;
+    void move();
 };
+*/
 
-
-//Checks guess of user and compares it to the random integer that was generated.
-void GuessVerification::guessVerifier(int guess){
-    int n = 100;
-    for (int i = 1; i <= 3; i++){
-        if (i == 1){
-            if (((guess/n) % 10) == ((randNum/100) % 10)){ //compares guess dig 1 to randNum digit 1
-                n = n/10;
-                green++;
-            } else if (((guess/n) % 10) == ((randNum/10) % 10)) { //compares guess dig 1 to randNum digit 2
-                n = n/10;
-                yellow++;
-                if ((((guess/100) % 10) == ((guess/10) % 10)) && (((guess/100) % 10) == (guess % 10))){
-                    yellow--;
-                }
-            } else if (((guess/n) % 10) == (randNum % 10)) { //compares guess dig 1 to randNum digit 3
-                n = n/10;
-                yellow++;
-                if ((((guess/100) % 10) == ((guess/10) % 10)) && (((guess/100) % 10) == (guess % 10))){
-                    yellow--;
-                }
-            } else {
-                n = n/10;
-                red++;
-            }
-            
-        } else if (i == 2){
-            if (green == 1){
-                if (((guess/n) % 10) == ((randNum/10) % 10)){ //compares guess dig 2 to randNum digit 2
-                    n = n/10;
-                    green++;
-                } else if (((guess/n) % 10) == (randNum % 10)) { //compares guess dig 2 to randNum digit 3
-                    n = n/10;
-                    yellow++;
-                    if ((((guess/100) % 10) == ((guess/10) % 10)) && (((guess/100) % 10) == (guess % 10))){
-                        yellow--;
-                    }
-                } else {
-                    n = n/10;
-                    red++;
-                }
-            } else {
-                if (((guess/n) % 10) == ((randNum/10) % 10)){ //compares guess dig 2 to randNum digit 2
-                    n = n/10;
-                    green++;
-                } else if (((guess/n) % 10) == ((randNum/100) % 10)) { //compares guess dig 2 to randNum digit 1
-                    n = n/10;
-                    yellow++;
-                    if ((((guess/100) % 10) == ((guess/10) % 10)) && (((guess/100) % 10) == (guess % 10))){
-                        yellow--;
-                    }
-                } else if (((guess/n) % 10) == (randNum % 10)) { //compares guess dig 2 to randNum digit 3
-                    n = n/10;
-                    yellow++;
-                    if ((((guess/100) % 10) == ((guess/10) % 10)) && (((guess/100) % 10) == (guess % 10))){
-                        yellow--;
-                    }
-                } else {
-                    n = n/10;
-                    red++;
-                }
-
-            }
-
-        } else if (i == 3){
-            if (green == 2){
-                if (((guess/n) % 10) == (randNum % 10)){ //compares guess dig 3 to randNum digit 3
-                    n = n/10;
-                    green++;
-                } else {
-                    n = n/10;
-                    red++;
-                }
-
-            } else {
-                if (((guess/n) % 10) == (randNum % 10)){ //compares guess dig 3 to randNum digit 3
-                    n = n/10;
-                    green++;
-                } else if (((guess/n) % 10) == ((randNum/100) % 10)) { //compares guess dig 3 to randNum digit 1
-                    n = n/10;
-                    yellow++;
-                    if ((((guess/100) % 10) == ((guess/10) % 10)) && (((guess/100) % 10) == (guess % 10))){
-                        yellow--;
-                    }
-                } else if (((guess/n) % 10) == ((randNum/10) % 10)) { //compares guess dig 3 to randNum digit 2
-                    n = n/10;
-                    yellow++;
-                    if ((((guess/100) % 10) == ((guess/10) % 10)) && (((guess/100) % 10) == (guess % 10))){
-                        yellow--;
-                    }
-                } else {
-                    n = n/10;
-                    red++;
-                }
-
-            }
-            
-        }
-        
-    }
-
-    printResults();
-}
-
-//Prints the results and if the guess is wrong it asks the user to enter another guess
-//and sends that data to the guessVerifier function.
-void GuessVerification::printResults(){
-    cout<<"You have: "<<red<<" red"<<endl;
-    cout<<"          "<<green<<" green"<<endl;
-    cout<<"          "<<yellow<<" yellow"<<endl;
-    if (green != 3){
-        green = 0;
-        yellow = 0;
-        red = 0;
-        cout<<"Enter the next guess."<<endl;
-        int guessAgain;
-        cin>>guessAgain;
-        return guessVerifier(guessAgain);
-    }
-    cout<<"CONGRATULATIONS, YOU ARE CORRECT!!!!!"<<endl;
-    cout<<"The number was "<<randNum<<endl;
-}
 
 
 int main() {
-    int guess;
-    srand(static_cast<unsigned int>(time(0)));
-    GuessVerification guessedValue;
-    cout<<"Try to guess the 3 digit number."<<endl;
-    cin>>guess;
-    guessedValue.guessVerifier(guess);
+    int numRows;
+    cout << "Please enter the number of rows: " << endl;
+    cin >> numRows;
+    //Initializes Matrix
+    vector < vector <int> > test (numRows, vector<int> (numRows, 0));
+    int i = 0;
+    int j = 0;
+    int n = 0;
+    int count = 0;
+    
+    
+    
+    while(count < test.size()){
+        test[i][j] = n + 3;
+        i++;
+        j++;
+        count++;
+    }
+    //Function to print Matrix
+    for (int i = 0; i < test.size(); i++){
+        for(int j = 0; j < test.size(); j++){
+            cout<<test[i][j];
+        }
+        cout<<endl;
+    }
     return 0;
 }
